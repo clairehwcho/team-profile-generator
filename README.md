@@ -14,21 +14,17 @@ This is a command-line application that takes in information about employees on 
 
 ## Installation
 - Install [Node.js v16](https://nodejs.org/en/blog/release/v16.16.0/)
-- Install Node.js inquirer and jest package:
+- Install Node.js [inquirer](https://www.npmjs.com/package/inquirer/v/8.2.4) and [jest](https://www.npmjs.com/package/jest) package:
   ```
-  npm i inquirer@8.2.4 jest
+  npm install inquirer@8.2.4 jest
   ```
 
 ## Usage
-- Index page
+- Generated HTML file
 ![generated HTML file](assets/images/screenshot_index.png)
 
-- Walkthro
-
-<video src="https://user-images.githubusercontent.com/106784125/214694376-798ede0f-9c3e-4ecf-a24d-a7c01a26d446.mp4" width=600px></video>
-
-ugh video
-
+- Walkthrough video
+<video src="https://user-images.githubusercontent.com/106784125/214694376-798ede0f-9c3e-4ecf-a24d-a7c01a26d446.mp4"></video>
 
 ## License
 Copyright © 2022 [Claire Cho](https://github.com/clairehwcho).
