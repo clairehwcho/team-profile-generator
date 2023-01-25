@@ -23,7 +23,12 @@ This is a command-line application that takes in information about employees on 
 - Index page
 ![generated HTML file](assets/images/screenshot_index.png)
 
-- Walkthrough video
+- Walkthro
+
+<video src="https://user-images.githubusercontent.com/106784125/214694376-798ede0f-9c3e-4ecf-a24d-a7c01a26d446.mp4" width=600px></video>
+
+ugh video
+
 
 ## License
 Copyright © 2022 [Claire Cho](https://github.com/clairehwcho).
