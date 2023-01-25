@@ -1,111 +1,109 @@
 // Import external Node JS modules and classes
 const inquirer = require('inquirer');
 const fs = require('fs');
-const path = require('path');
-const generateHtml = require('./src/generateHtml');
-const {
-    validateNameInput,
-    validateIdInput,
-    validateEmailInput,
-    validateOfficeNumberInput,
-    validateGithubInput,
-    validateSchoolInput
-} = require('./src/validateInput');
-const generateCss = require('./src/generateCss');
-const Employee = require('./lib/Employee');
+const generateHTML = require('./src/generateHTML');
+const generateCSS = require('./src/generateCSS');
+const validateInput = require('./src/validateInput');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 // The writeToFile function creates HTML and CSS files.
 const writeToFile = function (data) {
-    fs.writeFile(path.join(__dirname, "/dist/team-profile.html"), generateHtml(data), (err) =>
-        err ? console.error(err) : console.log('HTML file has been successfully crated.'));
+    fs.writeFile("./dist/index.html", generateHTML(data), (err) =>
+        err ? console.error(err) : console.log('HTML file has been successfully created.'));
 
-    fs.writeFile(path.join(__dirname, "/dist/style.css"), generateCss(), (err) =>
-        err ? console.error(err) : console.log('CSS file has been successfully crated.'))
+    fs.writeFile("./dist/style.css", generateCSS(), (err) =>
+        err ? console.error(err) : console.log('CSS file has been successfully created.'));
 };
 
+// List of questions to prompt user to answer to add manager
 const questionsToAddManager = [
     {
         name: "name",
         type: "input",
         message: "Enter the team manager's name.",
-        validate: validateNameInput
+        validate: validateInput.validateNameInput
     },
     {
         name: "id",
         type: "input",
-        message: "Enter the team manager's ID.",
-        validate: validateIdInput
+        message: "Enter the team manager's employee ID.",
+        validate: validateInput.validateIdInput
     },
     {
         name: "email",
         type: "input",
         message: "Enter the team manager's email address.",
-        validate: validateEmailInput
+        validate: validateInput.validateEmailInput
     },
     {
         name: "officeNumber",
         type: "input",
         message: "Enter the team manager's office number.",
-        validate: validateOfficeNumberInput
+        validate: validateInput.validateOfficeNumberInput
     }
 ];
 
+// List of questions to prompt user to answer to add engineer
 const questionsToAddEngineer = [
     {
         name: "name",
         type: "input",
         message: "Enter the engineer's name.",
-        validate: validateNameInput
+        validate: validateInput.validateNameInput
     },
     {
         name: "id",
-        type: "number",
-        message: "Enter the engineer's Id.",
-        validate: validateIdInput
+        type: "input",
+        message: "Enter the engineer's employee Id.",
+        validate: validateInput.validateIdInput
     },
     {
         name: "email",
         type: "input",
         message: "Enter the engineer's email address.",
-        validate: validateEmailInput
+        validate: validateInput.validateEmailInput
     },
     {
         name: "github",
         type: "input",
         message: "Enter the engineer's GitHub username.",
-        validate: validateGithubInput
+        validate: validateInput.validateGithubInput
     }
 ];
 
+// List of questions to prompt user to answer to add intern
 const questionsToAddIntern = [
     {
         name: "name",
         type: "input",
         message: "Enter the intern's name.",
-        validate: validateNameInput
+        validate: validateInput.validateNameInput
 
     },
     {
         name: "id",
-        type: "number",
-        message: "Enter the intern's Id.",
-        validate: validateIdInput
+        type: "input",
+        message: "Enter the intern's employee Id.",
+        validate: validateInput.validateIdInput
 
     },
     {
         name: "email",
         type: "input",
         message: "Enter the intern's email address.",
-        validate: validateEmailInput
+        validate: validateInput.validateEmailInput
     },
     {
         name: "school",
         type: "input",
         message: "Enter the intern's School.",
-        validate: validateSchoolInput
+        validate: validateInput.validateSchoolInput
     }
 ];
 
+// Question to prompt user to answer if user wants to add members or finish building a team
 const questionToAddMember = [
     {
         name: "addOrFinish",
@@ -121,12 +119,13 @@ const questionToAddMember = [
 
 // The init function prompts user to enter information to be displayed on the HTML file.
 const init = function () {
+    let employees = [];
+
     inquirer
         .prompt(questionsToAddManager)
-        .then(async (newManager) => {
-            let team = [];
-            newManager.position = "manager";
-            team.push(newManager);
+        .then(async (answers) => {
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+            employees.push(manager);
 
             let isFinished = false;
             while (!isFinished) {
@@ -134,23 +133,23 @@ const init = function () {
 
                 if (addMember.addOrFinish === "Add an engineer") {
                     await inquirer.prompt(questionsToAddEngineer)
-                        .then((newEngineer) => {
-                            newEngineer.position = "engineer";
-                            team.push(newEngineer);
+                        .then((answers) => {
+                            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+                            employees.push(engineer);
                         });
                 }
                 else if (addMember.addOrFinish === "Add an intern") {
                     await inquirer.prompt(questionsToAddIntern)
-                        .then((newIntern) => {
-                            newIntern.position = "intern";
-                            team.push(newIntern);
+                        .then((answers) => {
+                            const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+                            employees.push(intern);
                         });
                 }
                 else {
                     isFinished = true;
                 }
             }
-            writeToFile(team);
+            writeToFile(employees);
         });
 }
 

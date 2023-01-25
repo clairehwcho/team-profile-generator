@@ -75,6 +75,10 @@ main {
     box-shadow: 5px 5px 5px var(--medium)
 }
 
+.card:hover {
+    transform: translate(5px, 5px);
+}
+
 .manager-card:hover {
     box-shadow: 5px 5px 5px var(--red);
 }
@@ -111,6 +115,14 @@ main {
 .card-body {
     line-height: 1.5rem;
     padding: 0.5rem;
+}
+
+.card-body a {
+    color: var(--red);
+}
+
+.card-body a:hover {
+    text-decoration: underline;
 }
 
 @media screen and (min-width: 768px) {

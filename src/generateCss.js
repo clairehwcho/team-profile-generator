@@ -1,5 +1,6 @@
-function generateCss () {
-    return `:root {
+function generateCSS () {
+    return (
+`:root {
     --light: #E7E5DF;
     --medium: #b3afa9;
     --dark: #1d272d;
@@ -76,6 +77,10 @@ main {
     box-shadow: 5px 5px 5px var(--medium)
 }
 
+.card:hover {
+    transform: translate(5px, 5px);
+}
+
 .manager-card:hover {
     box-shadow: 5px 5px 5px var(--red);
 }
@@ -114,6 +119,14 @@ main {
     padding: 0.5rem;
 }
 
+.card-body a {
+    color: var(--red);
+}
+
+.card-body a:hover {
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 768px) {
     .card {
         flex: 0 0 40%;
@@ -126,7 +139,7 @@ main {
         flex: 0 0 25%;
         max-width: 25%;
     }
-}`
+}`)
 }
 
-module.exports = generateCss;
+module.exports = generateCSS;

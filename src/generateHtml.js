@@ -1,100 +1,121 @@
-// const Engineer = require('./lib/Engineer');
-// const Intern = require('./lib/Intern');
-// const Manager = require('./lib/Manager');
-
-function renderManagerCard (member) {
-    return `<div class="card manager-card">
+function renderManagerCard (employee) {
+    return (
+        `<div class="card manager-card">
     <div class="card-header">
-        <h2>${member.name.toUpperCase()}</h2>
-        <h3>${member.position.toUpperCase()}</h3>
+        <h2>${employee.getName()}</h2>
+        <h3>${employee.getRole()}</h3>
     </div>
     <div class="card-body">
         <ul>
-            <li>ID: ${member.id}</li>
-            <li>Email: <a href="mailto:${member.email}>${member.email}</a></li>
-            <li>OfficeNumber: ${member.officeNumber}</li>
+            <li>ID: ${employee.getId()}</li>
+            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+            <li>OfficeNumber: ${employee.officeNumber}</li>
         </ul>
     </div>
 </div>`
+    )
 };
 
-function renderEngineerCard (member) {
-    return `<div class="card engineer-card">
+function renderEngineerCard (employee) {
+    return (
+        `<div class="card engineer-card">
     <div class="card-header">
-        <h2>${member.name.toUpperCase()}</h2>
-        <h3>${member.position.toUpperCase()}</h3>
+        <h2>${employee.getName()}</h2>
+        <h3>${employee.getRole()}</h3>
     </div>
     <div class="card-body">
         <ul>
-            <li>ID: ${member.id}</li>
-            <li>Email: ${member.email}</li>
-            <li>GitHub: ${member.github}</li>
+            <li>ID: ${employee.getId()}</li>
+            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+            <li>GitHub: <a href="http://github.com/${employee.getGithub()}" target="_blank">${employee.getGithub()}</a></li>
         </ul>
     </div>
 </div>`
-
+    )
 };
 
-function renderInternCard (member) {
-    return `<div class="card intern-card">
+function renderInternCard (employee) {
+    return (
+        `<div class="card intern-card">
     <div class="card-header">
-        <h2>${member.name.toUpperCase()}</h2>
-        <h3>${member.position.toUpperCase()}</h3>
+        <h2>${employee.getName()}</h2>
+        <h3>${employee.getRole()}</h3>
     </div>
     <div class="card-body">
         <ul>
-            <li>ID: ${member.id}</li>
-            <li>Email: ${member.email}</li>
-            <li>School: ${member.school}</li>
+            <li>ID: ${employee.getId()}</li>
+            <li>Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
+            <li>School: ${employee.getSchool()}</li>
         </ul>
     </div>
 </div>`
-
+    )
 };
 
 function renderCardSection (data) {
     let cardSection = "";
-    data.map((member) => {
-        if (member.position === "manager") {
-            cardSection += `${renderManagerCard(member)}`
+
+    data.sort((a, b) => {
+        if (a.getRole() === "Engineer" && b.getRole() === "Intern") {
+            return -1;
         }
-        else if (member.position === "engineer") {
-            cardSection += `${renderEngineerCard(member)}`
+        if (a.getRole() === "Intern" && b.getRole() === "Engineer") {
+            return 1;
         }
-        else if (member.position === "intern") {
-            cardSection += `${renderInternCard(member)}`
+        return 0;
+    });
+
+    data.map((employee) => {
+        if (employee.getRole() === "Manager") {
+            cardSection += `${renderManagerCard(employee)}`
         }
+        else if (employee.getRole() === "Engineer") {
+            cardSection += `${renderEngineerCard(employee)}`
+        }
+        else if (employee.getRole() === "Intern") {
+            cardSection += `${renderInternCard(employee)}`
+        }
+        // if (employee.getRole() === "Manager") {
+        //     cardSection += `${renderManagerCard(employee)}`
+        // }
+        // else if (employee.getRole() === "Engineer") {
+        //     cardSection += `${renderEngineerCard(employee)}`
+        // }
+        // else if (employee.getRole() === "Intern") {
+        //     cardSection += `${renderInternCard(employee)}`
+        // }
     })
     return cardSection;
 }
 
-function generateHtml (data) {
-    return `<!DOCTYPE html>
-    <html lang="en">
+function generateHTML (data) {
+    return (
+        `<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Team Profile</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <body>
-        <header>
-            <h1>My Team</h1>
-        </header>
+<body>
+    <header>
+        <h1>My Team</h1>
+    </header>
 
-        <main>
-            <section class="card-section">
-                ${renderCardSection(data)}
-            </section>
-        </main>
+    <main>
+        <section class="card-section">
+            ${renderCardSection(data)}
+        </section>
+    </main>
 
-    </body>
+</body>
 
-    </html>
-    `
+</html>`
+    )
 }
 
-module.exports = generateHtml;
+module.exports = generateHTML;
