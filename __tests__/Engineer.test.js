@@ -8,39 +8,43 @@ describe("Engineer class", () => {
 
     const engineer = new Engineer(name, id, email, github);
 
-    const expectedName = "Jane";
-    const expectedId = 1;
-    const expectedEmail = "jane@email.com";
-    const expectedGithub = "janegithub";
-    const expectedRole = "Engineer";
-
     describe("getName method", () => {
         it("should return a string of name with the first letter capitalized", () => {
-            expect(engineer.getName()).toBe(expectedName);
+            const result = engineer.getName();
+            const expectedResult = "Jane";
+            expect(result).toBe(expectedResult);
         });
     });
 
     describe("getId method", () => {
         it("should return a numeric id", () => {
-            expect(engineer.getId()).toBe(expectedId);
+            const result = engineer.getId();
+            const expectedResult = 1;
+            expect(result).toBe(expectedResult);
         });
     });
 
     describe("getEmail method", () => {
         it("should return a valid email address", () => {
-            expect(engineer.getEmail()).toBe(expectedEmail);
+            const result = engineer.getEmail();
+            const expectedResult = "jane@email.com";
+            expect(result).toBe(expectedResult);
         });
     });
 
     describe("getGithub method", () => {
         it("should return a valid github username", () => {
-            expect(engineer.getGithub()).toBe(expectedGithub);
+            const result = engineer.getGithub();
+            const expectedResult = "janegithub";
+            expect(result).toBe(expectedResult);
         });
     });
 
     describe("getRole method", () => {
         it("should return a correct role", () => {
-            expect(engineer.getRole()).toBe(expectedRole);
+            const result = engineer.getRole();
+            const expectedResult = "Engineer";
+            expect(result).toBe(expectedResult);
         });
     });
 });
