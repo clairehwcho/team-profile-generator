@@ -3,16 +3,15 @@
 // const Manager = require('./lib/Manager');
 
 function renderManagerCard (member) {
-    return `
-    <div class="card manager-card">
+    return `<div class="card manager-card">
     <div class="card-header">
-        <h2>${member.name}</h2>
-        <h3>${member.position}</h3>
+        <h2>${member.name.toUpperCase()}</h2>
+        <h3>${member.position.toUpperCase()}</h3>
     </div>
     <div class="card-body">
         <ul>
             <li>ID: ${member.id}</li>
-            <li>Email: ${member.email}</li>
+            <li>Email: <a href="mailto:${member.email}>${member.email}</a></li>
             <li>OfficeNumber: ${member.officeNumber}</li>
         </ul>
     </div>
@@ -20,11 +19,10 @@ function renderManagerCard (member) {
 };
 
 function renderEngineerCard (member) {
-    return `
-    <div class="card manager-card">
+    return `<div class="card engineer-card">
     <div class="card-header">
-        <h2>${member.name}</h2>
-        <h3>${member.position}</h3>
+        <h2>${member.name.toUpperCase()}</h2>
+        <h3>${member.position.toUpperCase()}</h3>
     </div>
     <div class="card-body">
         <ul>
@@ -38,11 +36,10 @@ function renderEngineerCard (member) {
 };
 
 function renderInternCard (member) {
-    return `
-    <div class="card manager-card">
+    return `<div class="card intern-card">
     <div class="card-header">
-        <h2>${member.name}</h2>
-        <h3>${member.position}</h3>
+        <h2>${member.name.toUpperCase()}</h2>
+        <h3>${member.position.toUpperCase()}</h3>
     </div>
     <div class="card-body">
         <ul>
@@ -59,13 +56,13 @@ function renderCardSection (data) {
     let cardSection = "";
     data.map((member) => {
         if (member.position === "manager") {
-            cardSection += `${renderManagerCard(member)};`
+            cardSection += `${renderManagerCard(member)}`
         }
         else if (member.position === "engineer") {
-            cardSection += `${renderEngineerCard(member)};`
+            cardSection += `${renderEngineerCard(member)}`
         }
         else if (member.position === "intern") {
-            cardSection += `${renderInternCard(member)};`
+            cardSection += `${renderInternCard(member)}`
         }
     })
     return cardSection;
@@ -89,7 +86,7 @@ function generateHtml (data) {
         </header>
 
         <main>
-            <section>
+            <section class="card-section">
                 ${renderCardSection(data)}
             </section>
         </main>

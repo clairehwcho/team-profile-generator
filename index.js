@@ -3,8 +3,16 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const path = require('path');
 const generateHtml = require('./src/generateHtml');
-const validateInput = require('./src/validateInput');
+const {
+    validateNameInput,
+    validateIdInput,
+    validateEmailInput,
+    validateOfficeNumberInput,
+    validateGithubInput,
+    validateSchoolInput
+} = require('./src/validateInput');
 const generateCss = require('./src/generateCss');
+const Employee = require('./lib/Employee');
 
 // The writeToFile function creates HTML and CSS files.
 const writeToFile = function (data) {
@@ -20,22 +28,25 @@ const questionsToAddManager = [
         name: "name",
         type: "input",
         message: "Enter the team manager's name.",
-        // validate: validateInput()
+        validate: validateNameInput
     },
     {
         name: "id",
-        type: "number",
-        message: "Enter the team manager's ID."
+        type: "input",
+        message: "Enter the team manager's ID.",
+        validate: validateIdInput
     },
     {
         name: "email",
         type: "input",
-        message: "Enter the team manager's email address."
+        message: "Enter the team manager's email address.",
+        validate: validateEmailInput
     },
     {
         name: "officeNumber",
         type: "input",
-        message: "Enter the team manager's office number."
+        message: "Enter the team manager's office number.",
+        validate: validateOfficeNumberInput
     }
 ];
 
@@ -43,22 +54,26 @@ const questionsToAddEngineer = [
     {
         name: "name",
         type: "input",
-        message: "Enter the engineer's name."
+        message: "Enter the engineer's name.",
+        validate: validateNameInput
     },
     {
         name: "id",
         type: "number",
-        message: "Enter the engineer's Id."
+        message: "Enter the engineer's Id.",
+        validate: validateIdInput
     },
     {
         name: "email",
         type: "input",
-        message: "Enter the engineer's email address."
+        message: "Enter the engineer's email address.",
+        validate: validateEmailInput
     },
     {
         name: "github",
         type: "input",
-        message: "Enter the engineer's GitHub username."
+        message: "Enter the engineer's GitHub username.",
+        validate: validateGithubInput
     }
 ];
 
@@ -66,22 +81,28 @@ const questionsToAddIntern = [
     {
         name: "name",
         type: "input",
-        message: "Enter the intern's name."
+        message: "Enter the intern's name.",
+        validate: validateNameInput
+
     },
     {
         name: "id",
         type: "number",
-        message: "Enter the intern's Id."
+        message: "Enter the intern's Id.",
+        validate: validateIdInput
+
     },
     {
         name: "email",
         type: "input",
-        message: "Enter the intern's email address."
+        message: "Enter the intern's email address.",
+        validate: validateEmailInput
     },
     {
         name: "school",
         type: "input",
-        message: "Enter the intern's School."
+        message: "Enter the intern's School.",
+        validate: validateSchoolInput
     }
 ];
 
