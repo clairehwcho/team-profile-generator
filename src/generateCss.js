@@ -1,0 +1,129 @@
+function generateCss () {
+    return `:root {
+        --light: #E7E5DF;
+        --medium: #b3afa9;
+        --dark: #1d272d;
+        --yellow: #edb314;
+        --green: #2BBBAD;
+        --red: #D26754;
+        --border-radius: 10px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        min-height: 100%;
+        line-height: 1;
+        font-family: sans-serif;
+    }
+
+    ol,
+    ul {
+        list-style: none;
+    }
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        color: unset;
+        text-decoration: none;
+    }
+
+    header {
+        width: 100%;
+        min-height: 100px;
+        color: white;
+        background-color: var(--dark);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main {
+        width: 100%;
+        height: fit-content;
+        background-color: white;
+        margin: 0 auto;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        transition: all 0.5s linear;
+    }
+
+    .card {
+        background-color: var(--);
+        flex: 1 0 100%;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.5s linear;
+        padding: 0.5rem;
+        margin: 1rem;
+        border: 1px solid var(--medium);
+        border-radius: var(--border-radius);
+        box-shadow: 5px 5px 5px var(--medium)
+    }
+
+    .manager-card:hover {
+        box-shadow: 5px 5px 5px var(--red);
+    }
+
+    .engineer-card:hover {
+        box-shadow: 5px 5px 5px var(--green);
+    }
+    .intern-card:hover {
+        box-shadow: 5px 5px 5px var(--yellow);
+    }
+
+    .card-header {
+        line-height: 1.5rem;
+        color: white;
+        border: 2px solid var(--light);
+        border-radius: 8px;
+        padding: 0.5rem;
+        transition: all 0.5s ease-in-out
+    }
+
+    .manager-card .card-header {
+        background-color: var(--red);
+    }
+
+    .engineer-card .card-header {
+        background-color: var(--green);
+    }
+
+    .intern-card .card-header {
+        background-color: var(--yellow);
+    }
+
+    .card-body {
+        line-height: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    @media screen and (min-width: 768px) {
+        .card {
+            flex: 0 0 40%;
+            max-width: 40%;
+        }
+    }
+
+    @media screen and (min-width: 992px) {
+        .card {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+    }
+    `
+}
+
+module.exports = generateCss;
