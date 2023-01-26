@@ -1,3 +1,4 @@
+// The renderManagerCard function returns a card for manager to be inserted in the HTML file.
 function renderManagerCard (employee) {
     return (
         `<div class="card manager-card">
@@ -16,6 +17,7 @@ function renderManagerCard (employee) {
     )
 };
 
+// The renderEngineerCard function returns a card for engineer to be inserted in the HTML file.
 function renderEngineerCard (employee) {
     return (
         `<div class="card engineer-card">
@@ -34,6 +36,7 @@ function renderEngineerCard (employee) {
     )
 };
 
+// The renderInternCard function returns a card for intern to be inserted in the HTML file.
 function renderInternCard (employee) {
     return (
         `<div class="card intern-card">
@@ -52,6 +55,7 @@ function renderInternCard (employee) {
     )
 };
 
+// The renderCardSection function returns a section for employee cards to be inserted in the HTML file.
 function renderCardSection (data) {
     let cardSection = "";
 
@@ -88,6 +92,7 @@ function renderCardSection (data) {
     return cardSection;
 }
 
+// The generateHTML function generates the content for HTML file.
 function generateHTML (data) {
     return (
         `<!DOCTYPE html>

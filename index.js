@@ -121,16 +121,19 @@ const questionToAddMember = [
 const init = function () {
     let employees = [];
 
+    // Prompt user to enter manager's information.
     inquirer
         .prompt(questionsToAddManager)
         .then(async (answers) => {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
             employees.push(manager);
 
+            // Prompt user to add team members or finish building a team.
             let isFinished = false;
             while (!isFinished) {
                 const addMember = await inquirer.prompt(questionToAddMember);
 
+                // If "Add an engineer" is chosen, prompt user to enter engineer's information.
                 if (addMember.addOrFinish === "Add an engineer") {
                     await inquirer.prompt(questionsToAddEngineer)
                         .then((answers) => {
@@ -138,6 +141,7 @@ const init = function () {
                             employees.push(engineer);
                         });
                 }
+                // If "Add an intern" is chosen, prompt user to enter intern's information.
                 else if (addMember.addOrFinish === "Add an intern") {
                     await inquirer.prompt(questionsToAddIntern)
                         .then((answers) => {
@@ -145,6 +149,7 @@ const init = function () {
                             employees.push(intern);
                         });
                 }
+                // If "Finish building a team" is chosen, exit the application.
                 else {
                     isFinished = true;
                 }

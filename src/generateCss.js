@@ -1,3 +1,4 @@
+// The generateCSS function generates the content for CSS file.
 function generateCSS () {
     return (
 `:root {

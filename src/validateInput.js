@@ -1,3 +1,5 @@
+// These validators are to validate input values for inquirer prompts.
+
 const validateNameInput = function (input) {
     if (!isNaN(input) || !input.trim().length) {
         return "Name must be a non-empty string";
